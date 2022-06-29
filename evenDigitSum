@@ -1,0 +1,31 @@
+#Description
+
+Write a method named getEvenDigitSum with one parameter of type int called number.
+The method should return the sum of the even digits within the number.
+If the number is negative, the method should return -1 to indicate an invalid value.
+
+#Method
+
+public class EvenDigitSum {
+    public static int getEvenDigitSum(int number) {
+        if (number < 0) {
+            return -1;
+        }else {
+            int sumEven = 0;
+            int sum = 0;
+            int num = number;
+            while (num > 0){
+                //extract the least significant digit
+                int digit = num % 10;
+                if (digit % 2 == 0){
+                sum+= digit;
+                }
+                //drop the least significant digit
+                num /= 10;
+            }
+            return sum;
+        }
+    }
+    
+    // write your code here
+}
