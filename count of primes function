@@ -1,0 +1,30 @@
+count of primes function
+
+public static boolean ifPrime(int N){
+        boolean isPrime = true;
+        if(N==0||N==1){
+            isPrime=false;
+        }
+        for(int i=2;i*i<=N;i++){
+            if(N%i==0){
+                isPrime = false;
+            }
+        }
+        return isPrime;
+
+    }
+
+
+
+    public static int sumOfPrime(int N) {
+        int sum = 0;
+        for(int i=1;i<=N;i++) {
+            boolean T = ifPrime(i);
+            if(T){
+                sum++;
+            }
+        }
+        return sum;
+
+
+    }
