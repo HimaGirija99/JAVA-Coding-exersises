@@ -1,0 +1,71 @@
+import java.util.Scanner;
+
+public class patterns {
+    public static void main(String[] args) {
+        int i = 1, space, star,k = 0, n;
+        Scanner sc = new Scanner(System.in);
+        n = sc.nextInt();
+        System.out.println();
+        int n1=(n+1)/2;
+        while(i <= n1)
+        {   space=1;
+            while(space <= n1-i)
+            {
+                System.out.print(" ");
+                space++;
+            }
+            star=0;
+            while (star != 2*i-1)
+            {
+                if ((star == 0)||star == 2*i-2){
+                    System.out.print("*");
+                } else{
+                    System.out.print(" ");
+                }
+                star++;
+            }
+            System.out.println();
+            i++;
+        }
+        int n2=n-n1;
+        int l=n2;
+        while(n2>=1)
+        {   space=1;
+            while(space <= l-n2+1)
+            {
+                System.out.print(" ");
+                space++;
+            }
+            k = 0;
+            while (k != 2*n2-1)
+            {
+                if ((k == 0) || (k == 2*n2-2)) {
+                    System.out.print("*");
+                }else {
+                    System.out.print(" ");
+                }k++;
+            }
+            System.out.println();
+            n2--;
+        }
+
+    }    
+}
+9
+
+    *
+   * *
+  *   *
+ *     *
+*       *
+ *     *
+  *   *
+   * *
+    *
+
+Process finished with exit code 0
+
+
+
+
+
