@@ -1,0 +1,56 @@
+import java.lang.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int A = sc.nextInt();
+        int B =sc.nextInt();
+        int result = Math.min(A,B);
+        while (result > 0) {
+            if(A%result==0 && B%result==0){
+
+                break;
+            }
+            result--;
+        }
+        System.out.println(result);
+        
+    }
+}
+Scanner sc = new Scanner(System.in);
+        int A = sc.nextInt();
+        int B = sc.nextInt();
+        if (A == 0)
+            System.out.println(B);
+        if (B == 0)
+            System.out.println(A);
+
+        // base case
+        if (A == B) {
+            System.out.println(A);
+        }
+        // a is greater
+        else{
+            if (A > B){
+                A = A - B;
+            }else{
+                B= B- A;
+            }
+            System.out.println(Math.max(A,B));
+        }
+
+        sc.close();
+
+        Scanner sc = new Scanner(System.in);
+        int A = sc.nextInt();
+        int B =sc.nextInt();
+        int result = Math.min(A,B);
+        while (result > 0) {
+            if(A%result==0 && B%result==0){
+                break;
+            }
+            result--;
+        }
+        int LCM = (A*B)/result;
+        System.out.println(LCM);
