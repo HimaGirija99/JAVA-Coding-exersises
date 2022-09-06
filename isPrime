@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+        int a = 57;
+        boolean c =isPrime(a);
+        System.out.println(c);    }
+
+
+    public static boolean isPrime(int a) {
+        boolean isPrime=true;
+        int div=2;
+        while(div<=a/2){
+            if(a%div==0){
+                isPrime=false;
+                break;
+            }
+            div++;
+        }
+        return isPrime;
+
+    }
