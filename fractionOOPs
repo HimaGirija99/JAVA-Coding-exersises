@@ -1,0 +1,66 @@
+public class fraction {
+    private int numerator;
+    private int denominator;
+
+
+    public fraction(int numerator, int denominator) {
+        if(denominator==0){
+            denominator =1;
+        }
+        this.numerator = numerator;
+        this.denominator = denominator;
+        simplify();
+
+    }
+
+    public int getNumerator() {
+        return numerator;
+    }
+
+    public void setNumerator(int num) {
+
+        this.numerator = num;
+        simplify();
+    }
+
+    public int getDenominator() {
+        return denominator;
+    }
+
+    public void setDenominator(int num) {
+        if (num==0){
+            return;
+        }
+        this.denominator = num;
+        simplify();
+    }
+    public void print(){
+        System.out.println(numerator+"/"+denominator);
+    }
+    public void increment(){
+        numerator = numerator+denominator;
+        simplify();
+    }
+    public void simplify(){
+        int min = Math.min(numerator,denominator);
+        int gcd =1;
+        for(int i=2; i<=min;i++){
+            if(numerator%i==0 && denominator%i==0){
+                gcd = i;
+            }
+        }
+        numerator = numerator/gcd;
+        denominator = denominator/gcd;
+    }
+    public void add(fraction f2){
+        this.numerator=this.numerator*f2.denominator+f2.numerator*this.denominator;
+        this.denominator=this.denominator*f2.denominator;
+        simplify();
+
+    }
+    public static fraction add(fraction f1,fraction f2){
+        int numerator=f1.numerator*f2.denominator+f2.numerator*f1.denominator;
+        int denominator=f1.denominator*f2.denominator;
+        fraction f3 = new fraction(numerator,denominator);
+        return f3;
+    }
