@@ -1,0 +1,29 @@
+Leaders in array
+
+public static int solve(ArrayList<Integer> A) {
+       int count =1;
+        int N = A.size();
+        int x = A.get(N-1);
+        for(int i=N-2;i>=0;i--){
+            if(A.get(i)>x){
+                count++;
+                x = A.get(i);
+            }
+
+        }
+        return count;
+
+
+    }
+    public static ArrayList<Integer> solve(ArrayList<Integer> A) {
+    ArrayList<Integer> B = new ArrayList<>();       
+        int N = A.size();
+        int x = A.get(N-1);
+        B.add(A.get(N-1));
+        for(int i=N-2;i>=0;i--){
+            if(A.get(i)>x){                
+                x = A.get(i);
+                B.add(x);
+            }
+        }
+        return B;
