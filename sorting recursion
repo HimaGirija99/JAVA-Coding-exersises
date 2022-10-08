@@ -1,0 +1,22 @@
+public static boolean isSorted(int [] arr){
+        if (arr.length==1) return true;
+        if(arr[0] > arr[1]){
+            return false;
+        }
+        int[] smallArray = new int[arr.length-1];
+        for(int i=1;i<arr.length;i++){
+            smallArray[i-1]=arr[i];
+        }
+        boolean isSmallarraySorted = isSorted(smallArray);
+        return isSmallarraySorted;
+    }
+    public static boolean isSorted(int[] arr, int sI) {
+        if (sI == arr.length - 1) {
+            return true;
+        }
+        if (arr[sI] > arr[sI + 1]) {
+            return false;
+        }
+        boolean isSmallarraySorted = isSorted(arr, sI + 1);
+        return isSmallarraySorted;
+    }
