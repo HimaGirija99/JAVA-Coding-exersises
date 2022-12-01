@@ -1,0 +1,59 @@
+Largest BST
+Send Feedback
+Given a Binary tree, find the largest BST subtree. That is, you need to find the BST with maximum height in the given binary tree. You have to return the height of largest BST.
+Input format :
+The first line of input contains data of the nodes of the tree in level order form. The data of the nodes of the tree is separated by space. If any node does not have left or right child, take -1 in its place. Since -1 is used as an indication whether the left or right nodes exist, therefore, it will not be a part of the data of any node.
+Output format:
+The first and only line of output contains the height of the largest BST.
+Constraints:
+Time Limit: 1 second
+Sample Input 1:
+5 10 6 2 3 -1 -1 -1 -1 -1 9 -1 -1
+Sample Output 1:
+2
+
+public class Solution {
+	/*
+	 * BinaryTreeNode class
+	 * 
+	 * class BinaryTreeNode<T> 
+	 * { 
+	 * 		T data; 
+	 * 		BinaryTreeNode<T> left; 
+	 * 		BinaryTreeNode<T> right;
+	 *		public BinaryTreeNode(T data) 
+	 *		{
+	 *  		this.data = data; 
+	 *  	} 
+	 *  }
+	 */
+	
+	public static int largestBSTSubtree(BinaryTreeNode<Integer> root) {
+		return largestBSTBT(root)[2];
+	}
+	 public static int[] largestBSTBT(BinaryTreeNode<Integer> root)
+    {       
+        if (root == null)
+            return new int[] { Integer.MAX_VALUE,
+                               Integer.MIN_VALUE, 0 };
+        if (root.left == null && root.right == null)
+            return new int[] { root.data, root.data, 1 };       
+        int[] left = largestBSTBT(root.left);
+        int[] right = largestBSTBT(root.right);        
+        int[] ans = new int[3];        
+        if ((left[1] < root.data)
+            && (right[0] > root.data)) {
+            ans[0] = Math.min(
+                left[0], Math.min(right[0], root.data));
+            ans[1] = Math.max(right[1],
+                              Math.max(left[1], root.data));            
+            ans[2] = 1 + Math.max(left[2], right[2]);
+            return ans;
+        }       
+        ans[0] = Integer.MIN_VALUE;
+        ans[1] = Integer.MAX_VALUE;
+        ans[2] = Math.max(left[2], right[2]); 
+        return ans;
+    }
+
+}
