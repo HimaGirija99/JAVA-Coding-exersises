@@ -1,0 +1,55 @@
+Print Subset Sum to K
+Send Feedback
+Given an array A and an integer K, print all subsets of A which sum to K.
+Subsets are of length varying from 0 to n, that contain elements of the array. But the order of elements should remain same as in the input array.
+Note : The order of subsets are not important. Just print them in different lines.
+Input format :
+Line 1 : Size of input array
+Line 2 : Array elements separated by space
+Line 3 : K 
+Sample Input:
+9 
+5 12 3 17 1 18 15 3 17 
+6
+Sample Output:
+3 3
+5 1
+import java.util.*;
+public class solution {
+	public static void printSubsetsSumTok(int input[], int k) {
+		ArrayList<Integer> H = new ArrayList<Integer>();
+		int n = input.length;
+		printAllSubsetsRec(input, n, H, k);
+		
+	}
+	
+	static void printAllSubsetsRec(int arr[], int n, ArrayList<Integer> v,
+			int sum) {
+		// If remaining sum is 0, then print all
+		// elements of current subset.
+		
+		if (sum == 0) {
+			for (int i = v.size()-1; i >=0; i--)
+				System.out.print(v.get(i) + " ");
+			System.out.println();
+			return;
+		}
+
+		// If no remaining elements,
+		if (n == 0)
+			return;
+
+		// We consider two cases for every element.
+		// a) We do not include last element.
+		// b) We include last element in current subset.
+		
+		ArrayList<Integer> v1 = new ArrayList<Integer>(v);
+		
+		printAllSubsetsRec(arr, n - 1, v, sum);
+		v1.add(arr[n - 1]);
+		printAllSubsetsRec(arr, n - 1, v1, sum - arr[n - 1]);
+		
+	}
+
+	
+}
