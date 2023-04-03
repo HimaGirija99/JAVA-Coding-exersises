@@ -1,0 +1,71 @@
+Coding Ninjas
+Send Feedback
+Given a NxM matrix containing Uppercase English Alphabets only. Your task is to tell if there is a path in the given matrix which makes the sentence “CODINGNINJA” .
+There is a path from any cell to all its neighbouring cells. For a particular cell, neighbouring cells are those cells that share an edge or a corner with the cell.
+Input Format :
+The first line of input contains two space separated integers N and M, where N is number of rows and M is the number of columns in the matrix. 
+Each of the following N lines contain M characters. Please note that characters are not space separated.
+Output Format :
+Print 1 if there is a path which makes the sentence “CODINGNINJA” else print 0.
+Constraints :
+1 <= N <= 1000
+1 <= M <= 1000
+Time Limit: 1 second
+Sample Input 1:
+2 11
+CXDXNXNXNXA
+XOXIXGXIXJX
+Sample Output 1:
+1
+public class Solution {
+	int l =0;
+	int solve(String[] Graph , int N, int M)
+	{
+		String S = "CODINGNINJA";				
+		int [][] visited = new int[N][];
+		for(int i=0;i<N;i++) {
+        	visited[i] = new int[M];
+        	for(int j=0;j<M;j++){
+            	visited[i][j]=0;
+            }
+        }
+		for(int i=0;i<N;i++) {
+			for(int j=0;j<M;j++)
+			{
+				if(Graph[i].charAt(j)==S.charAt(0))
+				{
+					solveHelper(Graph,N,M,i,j,S,visited);
+					if(l>0)
+					return 1;
+				}
+			}
+    	}    
+    	return 0;
+	}
+	void solveHelper(String [] X, int N, int M, int i, int j, String S, int[][] visited){
+		if(S.length()==0){
+			l++;
+			return;
+		}
+		if(i<0 || i>=N || j<0 || j>=M)
+        	return ;    
+    	if(visited[i][j]== 1)
+        	return; 
+		char ch =   S.charAt(0);    
+    	if(ch!=X[i].charAt(j))
+        	return;    
+    	visited[i][j]=1;
+		solveHelper(X,N,M,i-1,j,S.substring(1),visited);
+    	solveHelper(X,N,M,i+1,j,S.substring(1),visited);
+		solveHelper(X,N,M,i,j-1,S.substring(1),visited);
+		solveHelper(X,N,M,i,j+1,S.substring(1),visited);
+		solveHelper(X,N,M,i+1,j-1,S.substring(1),visited);
+		solveHelper(X,N,M,i+1,j+1,S.substring(1),visited);
+		solveHelper(X,N,M,i-1,j-1,S.substring(1),visited);
+		solveHelper(X,N,M,i-1,j+1,S.substring(1),visited);
+		
+		visited[i][j]=0;
+	}
+	
+	
+}
